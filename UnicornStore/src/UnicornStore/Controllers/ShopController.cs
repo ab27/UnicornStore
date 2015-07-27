@@ -88,10 +88,8 @@ namespace UnicornStore.AspNet.Controllers
 
         public IActionResult Search(string term)
         {
-            var products = db.Products
-                .FromSql("SELECT * FROM [dbo].[SearchProducts] (@p0)", term)
-                .OrderByDescending(p => p.Savings)
-                .ToList();
+            // TODO Use TVF from database to search
+            var products = new Product[0];
 
             return View(new SearchViewModel
             {

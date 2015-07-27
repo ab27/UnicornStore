@@ -30,8 +30,6 @@ namespace UnicornStore.Migrations.UnicornStore
                     b.Property<int>("CartItemId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("LastUpdated");
-
                     b.Property<DateTime>("PriceCalculated");
 
                     b.Property<decimal>("PricePerUnit");

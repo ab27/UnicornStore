@@ -7,16 +7,13 @@ namespace UnicornStore.Logging
     {
         private static readonly string[] _whitelist = new string[]
         {
-                "Microsoft.Data.Entity.Relational.Update.BatchExecutor",
+                "Microsoft.Data.Entity.Update.BatchExecutor",
                 "Microsoft.Data.Entity.Query.QueryContextFactory"
         };
 
         public ILogger CreateLogger(string name)
         {
-            if(_whitelist.Contains(name))
-            {
-                return new SqlLogger();
-            }
+            // TODO return our logger sometimes
 
             return NullLogger.Instance;
         }

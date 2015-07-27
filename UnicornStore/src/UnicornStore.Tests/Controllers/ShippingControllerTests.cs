@@ -12,11 +12,9 @@ namespace UnicornStore.Tests.Controllers
         [Fact]
         public void GetPendingOrders()
         {
-            var builder = new DbContextOptionsBuilder<UnicornStoreContext>();
-            builder.UseInMemoryDatabase(persist: true);
-            var options = builder.Options;
+            // TODO Target an in-memory database for testing
 
-            using (var context = new UnicornStoreContext(options))
+            using (var context = new UnicornStoreContext())
             {
                 var orders = new List<Order>
                 {
@@ -34,11 +32,11 @@ namespace UnicornStore.Tests.Controllers
                 context.SaveChanges();
             }
 
-            using (var context = new UnicornStoreContext(options))
+            using (var context = new UnicornStoreContext())
             {
                 var controller = new ShippingController(context);
-                var orders = controller.PendingOrders();
-                Assert.Equal(1, orders.Count());
+                var pendingOrders = controller.PendingOrders();
+                Assert.Equal(1, pendingOrders.Count());
             }
         }
     }

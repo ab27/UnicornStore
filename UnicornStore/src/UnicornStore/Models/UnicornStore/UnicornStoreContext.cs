@@ -7,9 +7,7 @@ namespace UnicornStore.AspNet.Models.UnicornStore
 {
     public class UnicornStoreContext : DbContext
     {
-        public UnicornStoreContext(DbContextOptions<UnicornStoreContext> options)
-            : base(options)
-        { }
+        // TODO Add a constructor for testing
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -37,7 +35,8 @@ namespace UnicornStore.AspNet.Models.UnicornStore
 
             builder.Entity<OrderShippingDetails>().ConfigureAddress();
 
-            builder.Entity<CartItem>().Property<DateTime>("LastUpdated");
+            // TODO introduce a LastUpdated property for CartItem
+
         }
 
         public override int SaveChanges()
@@ -47,10 +46,8 @@ namespace UnicornStore.AspNet.Models.UnicornStore
             var entries = this.ChangeTracker.Entries<CartItem>()
                 .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
 
-            foreach (var entry in entries)
-            {
-                entry.Property("LastUpdated").CurrentValue = DateTime.UtcNow;
-            }
+            // TODO set LastUpdated for all cart items
+            
 
             return base.SaveChanges();
         }

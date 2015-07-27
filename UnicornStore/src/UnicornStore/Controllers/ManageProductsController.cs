@@ -153,10 +153,12 @@ namespace UnicornStore.AspNet.Controllers
                 foreach (var product in products)
                 {
                     var discount = product.MSRP * model.PercentageOffMSRP / 100;
-                    product.CurrentPrice = product.MSRP - discount;
+                    
+                    // TODO Apply discount & save
+
                 }
 
-                db.SaveChanges();
+
 
                 return RedirectToAction("Index", new { categoryId = model.CategoryId });
             }
