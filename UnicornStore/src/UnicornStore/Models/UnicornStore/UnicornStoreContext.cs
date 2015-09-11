@@ -7,8 +7,8 @@ namespace UnicornStore.AspNet.Models.UnicornStore
 {
     public class UnicornStoreContext : DbContext
     {
-        public UnicornStoreContext(DbContextOptions<UnicornStoreContext> options)
-            : base(options)
+        public UnicornStoreContext()
+            : base()
         { }
 
         public DbSet<Product> Products { get; set; }
@@ -16,7 +16,6 @@ namespace UnicornStore.AspNet.Models.UnicornStore
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<WebsiteAd> WebsiteAds { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Recall> Recalls { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -40,15 +39,6 @@ namespace UnicornStore.AspNet.Models.UnicornStore
 
             builder.Entity<Product>()
                 .AlternateKey(p => p.SKU);
-
-            builder.Entity<CartItem>().Property<DateTime>("LastUpdated");
-
-            builder.Entity<Recall>()
-                .Reference(r => r.Product)
-                .InverseCollection()
-                .ForeignKey(r => r.ProductSKU)
-                .PrincipalKey(p => p.SKU)
-                .Required();
         }
 
         public override int SaveChanges()
@@ -60,7 +50,8 @@ namespace UnicornStore.AspNet.Models.UnicornStore
 
             foreach (var entry in entries)
             {
-                entry.Property("LastUpdated").CurrentValue = DateTime.UtcNow;
+                // TODO Set LastUpdated for all modified/added cart items
+
             }
 
             return base.SaveChanges();

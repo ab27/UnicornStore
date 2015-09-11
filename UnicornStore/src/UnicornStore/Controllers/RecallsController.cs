@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
+using System.Collections.Generic;
 using System.Linq;
 using UnicornStore.AspNet.Models.UnicornStore;
 
@@ -17,9 +18,8 @@ namespace UnicornStore.Controllers
 
         public IActionResult Index()
         {
-            var recalls = db.Recalls
-                .Include(r => r.Product)
-                .ToList();
+            // TODO Query for all Recalls
+            var recalls = new List<Recall>();
 
             return View(recalls);
         }
@@ -37,8 +37,9 @@ namespace UnicornStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Recalls.Add(recall);
-                db.SaveChanges();
+                // TODO Add the new Recall and save
+
+
                 return RedirectToAction("Index");
             }
 

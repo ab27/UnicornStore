@@ -12,7 +12,8 @@ namespace UnicornPacker.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data source={GetLocalDatabaseFile()}");
+            // TODO Configure database to use
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

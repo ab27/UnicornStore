@@ -20,8 +20,8 @@ namespace UnicornStore.AspNet.Controllers
 
         public IActionResult Index()
         {
+            // TODO Include related Lines and Products 
             var orders = db.Orders
-                .Include(o => o.Lines).ThenInclude(l => l.Product)
                 .Where(o => o.Username == User.GetUserName())
                 .Where(o => o.State != OrderState.CheckingOut);
 

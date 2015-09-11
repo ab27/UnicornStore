@@ -112,7 +112,6 @@ namespace UnicornStore.Migrations.UnicornStore
                 {
                     CartItemId = table.Column<int>(isNullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerIdentityStrategy.IdentityColumn),
-                    LastUpdated = table.Column<DateTime>(isNullable: false),
                     PriceCalculated = table.Column<DateTime>(isNullable: false),
                     PricePerUnit = table.Column<decimal>(isNullable: false),
                     ProductId = table.Column<int>(isNullable: false),

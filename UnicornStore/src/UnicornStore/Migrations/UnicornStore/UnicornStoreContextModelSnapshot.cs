@@ -22,8 +22,6 @@ namespace UnicornStore.Migrations.UnicornStore
                     b.Property<int>("CartItemId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("LastUpdated");
-
                     b.Property<DateTime>("PriceCalculated");
 
                     b.Property<decimal>("PricePerUnit");
@@ -127,19 +125,8 @@ namespace UnicornStore.Migrations.UnicornStore
                     b.Property<string>("SKU");
 
                     b.Key("ProductId");
-                });
 
-            modelBuilder.Entity("UnicornStore.AspNet.Models.UnicornStore.Recall", b =>
-                {
-                    b.Property<int>("RecallId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Details");
-
-                    b.Property<string>("ProductSKU")
-                        .Required();
-
-                    b.Key("RecallId");
+                    b.AlternateKey("SKU");
                 });
 
             modelBuilder.Entity("UnicornStore.AspNet.Models.UnicornStore.WebsiteAd", b =>
@@ -199,14 +186,6 @@ namespace UnicornStore.Migrations.UnicornStore
                     b.Reference("UnicornStore.AspNet.Models.UnicornStore.Category")
                         .InverseCollection()
                         .ForeignKey("CategoryId");
-                });
-
-            modelBuilder.Entity("UnicornStore.AspNet.Models.UnicornStore.Recall", b =>
-                {
-                    b.Reference("UnicornStore.AspNet.Models.UnicornStore.Product")
-                        .InverseCollection()
-                        .ForeignKey("ProductSKU")
-                        .PrincipalKey("SKU");
                 });
         }
     }

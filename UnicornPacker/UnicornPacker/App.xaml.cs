@@ -38,7 +38,8 @@ namespace UnicornPacker
 
             using (var db = new OrdersContext())
             {
-                db.Database.Migrate();
+                // TODO Apply migrations on app start
+
             }
         }
 

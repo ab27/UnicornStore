@@ -37,11 +37,12 @@ namespace UnicornPacker
                 {
                     foreach (var order in selectedOrders)
                     {
-                        db.Orders.Add(order);
-                        db.OrderLines.AddRange(order.Lines);
+                        // TODO Add the orders and lines to the context
+
                     }
 
-                    db.SaveChanges();
+                    // TODO Save the orders and lines to local database
+
                 }
 
                 // Refresh the page with pending orders

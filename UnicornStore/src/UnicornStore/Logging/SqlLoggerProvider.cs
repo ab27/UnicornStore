@@ -16,10 +16,8 @@ namespace UnicornStore.Logging
 
         public ILogger CreateLogger(string name)
         {
-            if(_whitelist.Contains(name))
-            {
-                return new SqlLogger();
-            }
+            // TODO return our logger for components that generate SQL
+
 
             return NullLogger.Instance;
         }
